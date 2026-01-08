@@ -133,8 +133,8 @@ for (let i = 0; i < eleves.length; i++) {
 	console.log(eleves[i].prenom, moyenne, admission, mention);
 
 	let index = 0;
+	let nombreAdmission = "";
 	while(index < eleves.length) {
-		let nombreAdmission = "";
 		if (admission === "admis") {
 			nombreAdmission ++ ;
 		}
