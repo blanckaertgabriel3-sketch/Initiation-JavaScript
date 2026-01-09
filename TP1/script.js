@@ -139,7 +139,7 @@ for (let i = 0; i < eleves.length; i++) {
 			nombreAdmission ++ ;
 		}
 		index ++;
-		console.log("nombre admission : ", nombreAdmission);	
 	}
+	console.log("nombre admission : ", nombreAdmission);	
 };
 
