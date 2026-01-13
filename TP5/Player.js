@@ -37,10 +37,11 @@ class Player {
 		//...
 	}
 	animate() {
-		if (this.isMoving = true || this.isAttacking = true || this.isDying = true) {
+		if (this.isMoving === true || this.isAttacking === true || this.isDying === true) {
 			this.isIdle = false;
 		}
-		else if (this.isMoving = false && this.isAttacking = false && this.isDying = false) {
+
+		else if (this.isMoving === false && this.isAttacking === false && this.isDying === false) {
 			this.isIdle = true;
 		}
 		//the player is moving
