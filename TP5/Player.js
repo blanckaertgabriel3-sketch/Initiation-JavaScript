@@ -37,19 +37,20 @@ class Player {
 		//...
 	}
 	animate() {
+		//if the player is not Idle
 		if (this.isMoving === true || this.isAttacking === true || this.isDying === true) {
 			this.isIdle = false;
 		}
-
+		//if the player is Idle
 		else if (this.isMoving === false && this.isAttacking === false && this.isDying === false) {
 			this.isIdle = true;
 		}
 		//the player is moving
 		if (this.isMoving) {
+			
 			this.currentWalkSpriteStep ++;
 			this.walkSpriteIndex ++;
 			if (this.currentWalkSpriteStep >= this.walkSpriteDuration) {
-				this.currentWalkSpriteStep = 0;
 				this.currentWalkSpriteStep = 0;
 			}
 			if (this.walkSpriteIndex >= this.walkSpriteNumber) {
@@ -95,8 +96,7 @@ class Player {
 }
 
 player1 = new Player("toto", [0, 0]);
-player1.isAttacking = true;
+player1.isMoving = true;
 for (let i = 0; i < 10 ; i++) {
 	player1.animate();
-	console.log(player1);
 }
