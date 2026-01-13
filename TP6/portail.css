@@ -10,14 +10,15 @@ header {
 	background-repeat: no-repeat;
 	height: 100vh;
 	background-size: 100% 100%;
+	background-image: none;
+	background-color: rgb(255, 169, 169);
 }
 header form {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	gap: 50px;
-	width: 200px;
+	width: 500px;
 	margin-top: 80px;
-	padding: 100px 30px;
 }
 form button {
 	border-radius: 10px;
@@ -44,4 +45,16 @@ form input {
 	width: 100%;
 	display: flex;
 	justify-content: center;
+}
+.container img {
+	width: 200px;
+	height: 200px;
+	border-radius: 10px;
+	opacity: 0;
+}
+.container {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	gap: 30px;
 }
