@@ -10,8 +10,6 @@ header {
 	background-repeat: no-repeat;
 	height: 100vh;
 	background-size: 100% 100%;
-	background-image: none;
-	background-color: rgb(255, 169, 169);
 }
 header form {
 	display: flex;
@@ -24,19 +22,26 @@ form button {
 	border-radius: 10px;
 	background-color: rgb(170, 239, 170);
 	width: 100%;
-	color: green;
-	border: 2px solid green;
-	background-color: #000;
+	color: brown;
+	border: 2px solid brown;
+	background-color: #fff;
+}
+form button:hover {
+	background-color: #b9b9b9;
+
 }
 form a {
 	text-decoration: none;
-	color: green;
-	border: 2px solid green;
+	color: brown;
+	border: 2px solid brown;
 	border-radius: 10px;
 	width: 100%;
 	display: flex;
 	justify-content: center;
-	background-color: #000;
+	background-color: #fff;
+}
+form a:hover {
+	background-color: #b9b9b9;
 }
 form input {
 	text-decoration: none;
@@ -50,7 +55,6 @@ form input {
 	width: 200px;
 	height: 200px;
 	border-radius: 10px;
-	opacity: 0;
 }
 .container {
 	width: 100%;
