@@ -30,19 +30,6 @@ form button:hover {
 	background-color: #b9b9b9;
 
 }
-form a {
-	text-decoration: none;
-	color: brown;
-	border: 2px solid brown;
-	border-radius: 10px;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	background-color: #fff;
-}
-form a:hover {
-	background-color: #b9b9b9;
-}
 form input {
 	text-decoration: none;
 	color: #000;
@@ -61,4 +48,12 @@ form input {
 	display: flex;
 	justify-content: space-around;
 	gap: 30px;
+}
+main .skins-container {
+	display: flex;
+	
+}
+main .skins-container > *{
+	display: block;
+
 }
