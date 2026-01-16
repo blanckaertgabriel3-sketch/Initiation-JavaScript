@@ -64,14 +64,18 @@ form.addEventListener("submit", (e) => {
 
   const pseudo = form.querySelector('input[type="name"]').value;
   const serverUrl = form.querySelector('input[type="text"]').value;
-  const selectedSkin = document.querySelector(
-    'input[name="selectedSkin"]:checked'
-  )?.value;
+  const selectedSkin = document.querySelector('input[name="selectedSkin"]:checked')?.value;
 
-  localStorage.setItem("pseudo", pseudo);
-  localStorage.setItem("serverUrl", serverUrl);
-  localStorage.setItem("skin", selectedSkin);
+  if (pseudo === "" || serverUrl === "") {
+    alert("Error: pseudo or server URL missing")
+  }
+  if (pseudo !== "" && serverUrl !== "") {
+    localStorage.setItem("pseudo", pseudo);
+    localStorage.setItem("serverUrl", serverUrl);
+    localStorage.setItem("skin", selectedSkin);
+  
+    window.location.href = "lobby.html";
+  }
 
-  window.location.href = "lobby.html";
 });
 
