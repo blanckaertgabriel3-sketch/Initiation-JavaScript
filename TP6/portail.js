@@ -1,4 +1,4 @@
-// Liste de tes spritesheets
+// Liste des spritesheets
 const skins = [];
 for (let i = 1; i <= 29; i++) {
   skins.push(`assets/${i}.png`);
@@ -56,3 +56,22 @@ skins.forEach((path, index) => {
     input.checked = true;
   });
 });
+
+const form = document.querySelector("form");
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault(); // empêche l'envoi classique du formulaire
+
+  const pseudo = form.querySelector('input[type="name"]').value;
+  const serverUrl = form.querySelector('input[type="text"]').value;
+  const selectedSkin = document.querySelector(
+    'input[name="selectedSkin"]:checked'
+  )?.value;
+
+  localStorage.setItem("pseudo", pseudo);
+  localStorage.setItem("serverUrl", serverUrl);
+  localStorage.setItem("skin", selectedSkin);
+
+  window.location.href = "lobby.html";
+});
+
