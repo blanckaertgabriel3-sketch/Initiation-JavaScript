@@ -1,16 +1,25 @@
-const game = new Game();
+console.log("==========Instance de la Game 1==========");
 
-// Test 1 : sync initiale
-console.log("Avant update :", game);
-game.update(backendData);
-console.log("Après update :", game);
+const game1 = new Game();
+game1.update(backendData);
+console.log(structuredClone(game1));
 
-// Test 2 : ajout joueur
-const backendData2 = structuredClone(backendData);
-backendData2.players["test-player-id"] = {
-  name: "testeur",
-  skinPath: "./spritesheets/5.png",
-  position: [0.1, 0.2],
+console.log("==========MetaData Test==========");
+backendData.isOver = true;
+backendData.timer = 192;
+backendData.players["28ead291-fcea-4b41-a596-d3c876c49a53"].name =
+  "MetaDataTEST";
+backendData.players["3cd71bbb-6a6b-4d4e-80e3-107130328a27"].hp = 2;
+game1.update(backendData);
+console.log(structuredClone(game1));
+
+console.log("==========AddPlayer Test==========");
+const newPlayer = "new-player-666";
+
+backendData.players[newPlayer] = {
+  name: "Le Petit Nouveau",
+  skinPath: "./assets/1.png",
+  position: [0.5, 0.5],
   lvl: 1,
   hp: 100,
   maxHp: 100,
@@ -18,30 +27,17 @@ backendData2.players["test-player-id"] = {
   speed: 0.2,
   direction: 1,
   isAttacking: false,
-  isWalking: false,
+  isWalking: true,
   isDying: false,
   attackCooldown: 1,
-  currentAttackCooldown: 0
+  currentAttackCooldown: 0,
 };
 
-game.update(backendData2);
-console.log("Après ajout joueur :", game.players);
+game1.update(backendData);
+console.log(structuredClone(game1));
 
-// Test 3 : update joueur
-const backendData3 = structuredClone(backendData2);
-backendData3.players["test-player-id"].hp = 42;
+console.log("==========DeletePlayer Test==========");
 
-game.update(backendData3);
-console.log("HP test-player-id :", game.players["test-player-id"].hp);
-
-// Test 4 : suppression joueur
-const backendData4 = structuredClone(backendData3);
-delete backendData4.players["3cd71bbb-6a6b-4d4e-80e3-107130328a27"];
-
-game.update(backendData4);
-console.log("Après suppression joueur :", game.players);
-
-const backendData5 = JSON.parse(JSON.stringify(backendData));
-delete backendData5.players["test-player-id"];
-game.update(backendData5);
-console.log("Après vraie suppression :", game.players);
+delete backendData.players[newPlayer];
+game1.update(backendData);
+console.log(structuredClone(game1));
