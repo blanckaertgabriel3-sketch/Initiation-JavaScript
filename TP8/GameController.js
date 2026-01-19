@@ -14,11 +14,13 @@ class GameController {
 
         this.game = false;
         this.player = false;
-        pseudo = localStorage.getItem("pseudo", pseudo);
-        serverUrl = localStorage.getItem("serverUrl", serverUrl);
-        selectedSkin = localStorage.getItem("skin", selectedSkin);
+        this.pseudo = localStorage.getItem("pseudo");
+        this.serverUrl = "ws://localhost:8000/ws";
+        // serverUrl = localStorage.getItem("serverUrl");
+        this.selectedSkin = localStorage.getItem("skin");
+
         //objet permetant de gérer les événements
-        action = {
+        this.action = {
             up: false,
             down: false,
             left: false,
@@ -26,11 +28,17 @@ class GameController {
             attack: false,
         }
         //déclaration de l'attribut webSocket
-        this.socket = new WebSocket(serverUrl);
+        let socket = new WebSocket("ws://localhost:8000/ws");
+        socket.onopen = () => console.log("connecté !");
+        socket.onmessage = (e) => console.log(e.data);
+        socket.onerror = (e) => console.error("Erreur WebSocket", e);
+
+
         
-        initSocket()
-
-
+        this.initSocket();
+    }
+    initSocket(){
+        console.log("initSocket");
     }
 
     // === Main render loop ===
@@ -44,3 +52,4 @@ class GameController {
 // === Start the game controller by instantiating the GameController class ===
 // This line will execute the constructor (e.g, launch the frontend)
 new GameController();
+
