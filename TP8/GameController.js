@@ -28,10 +28,14 @@ class GameController {
             attack: false,
         }
         //déclaration de l'attribut webSocket
-        let socket = new WebSocket("ws://localhost:8000/ws");
-        socket.onopen = () => console.log("connecté !");
-        socket.onmessage = (e) => console.log(e.data);
-        socket.onerror = (e) => console.error("Erreur WebSocket", e);
+        this.socket = new WebSocket("ws://localhost:8000/ws");
+        this.socket.onopen = () => {
+            console.log("connecté !");  
+            this.socket.send(JSON.stringify({
+                name: this.pseudo,
+                skinPath: this.skinPath
+            }));    
+        };     
 
 
         
