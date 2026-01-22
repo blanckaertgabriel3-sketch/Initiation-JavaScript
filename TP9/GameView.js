@@ -10,6 +10,7 @@ class GameView {
 		this.canvas.style.border = "2px solid black";
 		//récupération du context canvas
 		this.ctx = this.canvas.getContext("2d");
+		this.images = {};
 		
 		console.log("GameView instancié")
 	}
@@ -25,7 +26,7 @@ class GameView {
 		
 	}
 	drawPlayer(player) {
-		
+
 	}
 	//Nettoie le canvas + Dessine le fond
 	render(){
