@@ -23,7 +23,7 @@ skins.forEach((path, index) => {
   // radio button pour la sélection
   const input = document.createElement("input");
   input.type = "radio";
-  input.name = "selectedSkin";
+  input.name = "skinPath";
   input.value = path;
   if (index === 0) input.checked = true; // sélection par défaut du premier skin
 
@@ -64,7 +64,7 @@ form.addEventListener("submit", (e) => {
 
   const pseudo = form.querySelector('input[type="name"]').value;
   const serverUrl = form.querySelector('input[type="text"]').value;
-  const selectedSkin = document.querySelector('input[name="selectedSkin"]:checked')?.value;
+  const skinPath = document.querySelector('input[name="skinPath"]:checked')?.value;
 
   if (pseudo === "" || serverUrl === "") {
     alert("Error: pseudo or server URL missing")
@@ -72,7 +72,7 @@ form.addEventListener("submit", (e) => {
   if (pseudo !== "" && serverUrl !== "") {
     localStorage.setItem("pseudo", pseudo);
     localStorage.setItem("serverUrl", serverUrl);
-    localStorage.setItem("skin", selectedSkin);
+    localStorage.setItem("skinPath", skinPath);
   
     window.location.href = "game.html";
   }
