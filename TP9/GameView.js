@@ -6,14 +6,10 @@ class GameView {
 		//récupération des dimentions canvas
 		this.canvas.height = 500;
 		this.canvas.width = 800;
-		this.frameIndex = 0; // premier perso de la ligne
-		this.rowIndex = 2;   // ligne "bas" = personnage qui regarde vers le joueur
 		this.sWidth = 64;
 		this.sHeight = 64;
 		this.dWidth = 64;
 		this.dHeight = 64;
-		this.sx = this.frameIndex * this.dHeight;
-		this.sy = this.rowIndex * this.dWidth;
 		//mettre bordure pour la visibilité du canvas
 		this.canvas.style.border = "2px solid black";
 		//récupération du context canvas
@@ -37,6 +33,8 @@ class GameView {
 		
 	}
 	drawPlayer(player) {
+		this.sx = player.walkSpriteIndex * this.sWidth;
+		this.sy = player.rowIndex * this.sHeight;
 		if (!player.img) {
 			player.img = new Image();
 			player.img.src = player.skinPath;
@@ -56,6 +54,8 @@ class GameView {
 			if (!player || player.renderX === undefined || player.renderY === undefined) {
 				continue;
 			}
+			//les animations des joueurs
+			player.animate();
 			this.drawPlayer(player);
 		}
 	}

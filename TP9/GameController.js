@@ -5,6 +5,7 @@ class GameController {
         this.serverUrl = "ws://localhost:8000/ws";
         //-------------------- this.serverUrl = localStorage.getItem("serverUrl");
         this.skinPath = localStorage.getItem("skinPath");
+        console.log("skinPath", this.skinPath);
         
         // Create the Game instance that will store the game state (players, timer, flags)
         this.game = new Game();
@@ -66,7 +67,7 @@ class GameController {
             // Parse the received game state
             const gameState = JSON.parse(event.data);
 
-            console.log(gameState);
+            // ---------------------------------------------------------------------------console.log(gameState);
             
             // Synchronize frontend game state with backend data
             this.game.update(gameState);
@@ -90,6 +91,7 @@ class GameController {
                 case "ArrowRight": this.inputState.right = true; break;
                 case " ": this.inputState.attack = true; break;
             }
+            console.log("inputState", this.inputState)
         });
         
         // Listen for key release events
@@ -102,6 +104,7 @@ class GameController {
                 case "ArrowRight": this.inputState.right = false; break;
                 case " ": this.inputState.attack = false; break;
             }
+            console.log("inputState", this.inputState);
         });
     }
     
