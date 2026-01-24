@@ -33,15 +33,15 @@ class GameView {
 		
 	}
 	drawPlayer(player) {
-		this.sx = player.walkSpriteIndex * this.sWidth;
-		this.sy = player.rowIndex * this.sHeight;
+		const sx = player.walkSpriteIndex * this.sWidth;
+		const sy = player.rowIndex * this.sHeight;
+		const dx = player.renderX * this.canvas.width;
+		const dy = player.renderY * this.canvas.height;
 		if (!player.img) {
 			player.img = new Image();
 			player.img.src = player.skinPath;
 		}
-		this.dx = player.renderX * this.canvas.width;
-		this.dy = player.renderY * this.canvas.height;
-		this.ctx.drawImage(this.img, this.sx, this.sy, this.sWidth, this.sHeight, this.dx, this.dy, this.dWidth, this.dHeight)
+		this.ctx.drawImage(player.img, sx, sy, this.sWidth, this.sHeight, dx, dy, this.dWidth, this.dHeight);
 	}
 	//Nettoie le canvas + Dessine le fond
 	render(){
