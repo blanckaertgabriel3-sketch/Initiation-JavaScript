@@ -147,14 +147,14 @@ class Player {
         this.attackSpriteIndex = 0;
         this.attackSpritesNumber = 6;
         this.currentAttackSpriteStep = 0;
-        this.attackSpriteDuration = 0;
+        this.attackSpriteDuration = 12;
         
         this.deathSpriteIndex = 0;
         this.deathSpritesNumber = 6;
         this.currentDeathSpriteStep = 0;
         this.deathSpriteDuration = 5;
 
-        this.rowIndex = 40; // default = south
+        this.walkRowIndex = 40; // default = south
     }
     
     update(updateData) {
@@ -182,8 +182,30 @@ class Player {
         // If the player is walking
         if (this.isWalking) {
             // Reset attack sprite index and current attack sprite's step to 0 as we may have interrupted an attack animation
-            this.attackSpriteIndex = 0;
-            this.currentAttackSpriteStep = 0;
+            // -----------------------------------------------------------------this.attackSpriteIndex = 0;
+            switch(this.direction) {
+                // north
+                case 0:
+                    this.walkRowIndex = 21;
+                    this.walkSpritesNumber = 6;
+                    break;
+                    // east
+                case 1:
+                    this.walkRowIndex = 11;
+                    this.walkSpritesNumber = 9;
+                    break;
+                // south
+                case 2:
+                    this.walkRowIndex = 40;
+                    this.walkSpritesNumber = 8;
+                    break;
+                // west
+                case 3:
+                    this.walkRowIndex = 9;
+                    this.walkSpritesNumber = 9;
+                    break;
+            }
+            //-------------------------------------------------------------------------------- this.currentAttackSpriteStep = 0;
             
             // Increment the current walk sprite step to display the current walking animation sprite for the right number of frames
             this.currentWalkSpriteStep++;
@@ -198,38 +220,6 @@ class Player {
                 // We reset our index to display the first sprite of the animation instead, forming a looping animation
                 this.walkSpriteIndex = 0;
             }
-            //rowIndex = 21 marche NORD 6sprites
-            //rowIndex = 11 marche EST 9sprites
-            //rowIndex = 40 marche SUD 8sprites
-            //rowIndex = 9 marche OUEST 9sprites
-            // const directions = {
-            //     north: 0,
-            //     east: 1,
-            //     south: 2,
-            //     west: 3
-            // }
-            switch(this.direction) {
-                // north
-                case 0:
-                    this.rowIndex = 21;
-                    this.walkSpritesNumber = 6;
-                    break;
-                // east
-                case 1:
-                    this.rowIndex = 11;
-                    this.walkSpritesNumber = 9;
-                    break;
-                // south
-                case 2:
-                    this.rowIndex = 40;
-                    this.walkSpritesNumber = 8;
-                    break;
-                // west
-                case 3:
-                    this.rowIndex = 9;
-                    this.walkSpritesNumber = 9;
-                    break;
-            }
         }
         // If the player is attacking, or the attack animation started already
         else if (this.isAttacking || this.currentAttackSpriteStep > 0 || this.attackSpriteIndex > 0) {
@@ -237,6 +227,28 @@ class Player {
             this.currentWalkSpriteStep = 0;
             this.walkSpriteIndex = 0;
             
+            switch(this.direction) {
+                // north
+                case 0:
+                    this.attackRowIndex = 1;
+                    this.attackSpritesNumber = 6;
+                    break;
+                    // east
+                case 1:
+                    this.attackRowIndex = 4;
+                    this.attackSpritesNumber = 6;
+                    break;
+                // south
+                case 2:
+                    this.attackRowIndex = 3;
+                    this.attackSpritesNumber = 6;
+                    break;
+                // west
+                case 3:
+                    this.attackRowIndex = 2;
+                    this.attackSpritesNumber = 6;
+                    break;
+            }
             // Increment the current attack sprite step to display the current attacking animation sprite for the right number of frames
             this.currentAttackSpriteStep++;
             // If we displayed it for long enough
@@ -257,10 +269,10 @@ class Player {
                     This mecanism is implemented to avoid playing several attacking animations in a row (graphically incoherent with our attack cooldown).
                     The only exception would be for the server to maintain isAttacking at true even after the end of the animation.
                     This is not supposed to happen as i programmed the server to maintain isAttacking at true for a very short amount of time.
-                */
-                
-                this.attackSpriteIndex = 0;
-            }
+                    */
+                   
+                   this.attackSpriteIndex = 0;
+                }
         }
         // If the player is dying, or the dying animation already started
         else if (this.isDying || this.currentDeathSpriteStep > 0 || this.deathSpriteIndex > 0) {

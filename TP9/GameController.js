@@ -91,7 +91,6 @@ class GameController {
                 case "ArrowRight": this.inputState.right = true; break;
                 case " ": this.inputState.attack = true; break;
             }
-            console.log("inputState", this.inputState)
         });
         
         // Listen for key release events
@@ -104,7 +103,6 @@ class GameController {
                 case "ArrowRight": this.inputState.right = false; break;
                 case " ": this.inputState.attack = false; break;
             }
-            console.log("inputState", this.inputState);
         });
     }
     
