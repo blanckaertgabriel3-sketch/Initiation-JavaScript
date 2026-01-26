@@ -147,7 +147,7 @@ class Player {
         this.attackSpriteIndex = 0;
         this.attackSpritesNumber = 6;
         this.currentAttackSpriteStep = 0;
-        this.attackSpriteDuration = 12;
+        this.attackSpriteDuration = 6;
         
         this.deathSpriteIndex = 0;
         this.deathSpritesNumber = 6;
@@ -230,24 +230,24 @@ class Player {
             switch(this.direction) {
                 // north
                 case 0:
-                    this.attackRowIndex = 1;
+                    this.attackRowIndex = 0;
                     this.attackSpritesNumber = 6;
-                    break;
-                    // east
+                break;
+                // east
                 case 1:
-                    this.attackRowIndex = 4;
+                    this.attackRowIndex = 3;
                     this.attackSpritesNumber = 6;
-                    break;
+                break;
                 // south
                 case 2:
-                    this.attackRowIndex = 3;
+                    this.attackRowIndex = 2;
                     this.attackSpritesNumber = 6;
                     break;
                 // west
                 case 3:
-                    this.attackRowIndex = 2;
+                    this.attackRowIndex = 1;
                     this.attackSpritesNumber = 6;
-                    break;
+                break;
             }
             // Increment the current attack sprite step to display the current attacking animation sprite for the right number of frames
             this.currentAttackSpriteStep++;

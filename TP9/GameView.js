@@ -34,12 +34,14 @@ class GameView {
 			player.img = new Image();
 			player.img.src = player.skinPath;
 		}
-
+//ws://10.43.31.53:8000/ws
 		// Dimensions des sprites
 		const sWidth = 64;
 		const sHeight = 64;
-		const sWidthAttack = 128;
-		const sHeightAttack = 128;
+		const sWidthAttack = 192; //128 ou 192
+		const sHeightAttack = 192;
+		const dWidthAttack = 192; //128 ou 192
+		const dHeightAttack = 192;
 
 		// Dimensions de rendu sur canvas (toujours 64x64 pour la taille du joueur)
 		const dWidth = 64;
@@ -48,21 +50,19 @@ class GameView {
 		// Coordonnées de rendu du joueur sur le canvas
 		const dx = player.renderX * this.canvas.width;
 		const dy = player.renderY * this.canvas.height;
-
+		
 		// --- ATTACK ---
 		if (player.isAttacking || player.currentAttackSpriteStep > 0 || player.attackSpriteIndex > 0) {
+			const dxAttack = player.renderX * this.canvas.width - 64;
+			const dyAttack = player.renderY * this.canvas.height - 64;
 			// Coordonnées dans la sprite sheet
 			const sx = player.attackSpriteIndex * sWidthAttack;
-			const sy = player.attackRowIndex * sHeightAttack;
-
-			// Centrer le sprite plus grand sur le joueur
-			const drawX = dx - sWidthAttack / 2 + dWidth / 2;
-			const drawY = dy - sHeightAttack / 2 + dHeight / 2;
-
+			//sy = la ligne de l'attaque + les 54frames normales au dessus de la hauteur dHeight
+			const sy = 54 * dHeight + player.attackRowIndex * sHeightAttack;
 			this.ctx.drawImage(
 				player.img,
 				sx, sy, sWidthAttack, sHeightAttack, // source
-				drawX, drawY, sWidthAttack, sHeightAttack // destination
+				dxAttack, dyAttack, dWidthAttack, dHeightAttack // destination
 			);
 		} 
 		// --- WALK / IDLE ---

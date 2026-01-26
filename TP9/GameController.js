@@ -3,16 +3,19 @@ class GameController {
         // Retrieve player name, server address and chosen skin from localStorage (turned in at portal)
         this.pseudo = localStorage.getItem("pseudo");
         this.serverUrl = "ws://localhost:8000/ws";
+        // this.serverUrl = "ws://10.43.31.53:8000/ws";
         //-------------------- this.serverUrl = localStorage.getItem("serverUrl");
         this.skinPath = localStorage.getItem("skinPath");
         console.log("skinPath", this.skinPath);
+        console.log("pseudo", this.pseudo);
         
         // Create the Game instance that will store the game state (players, timer, flags)
         this.game = new Game();
         //création de l'instance GameView   
         this.view = new GameView(this.game);
         // Create a new WebSocket connection to the backend server
-        console.log(`ws://${this.serverUrl}/ws`);
+        // console.log(`ws://${this.serverUrl}/ws`);
+        console.log(this.serverUrl);
         this.socket = new WebSocket(this.serverUrl);
 
         // Timestamp of the last server update received
