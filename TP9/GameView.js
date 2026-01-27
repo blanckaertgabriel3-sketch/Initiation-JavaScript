@@ -10,6 +10,10 @@ class GameView {
 		this.canvas.style.border = "2px solid black";
 		//récupération du context canvas
 		this.ctx = this.canvas.getContext("2d");
+		//chargement du background
+		this.bgPath = new Image();
+		this.bgPath.src = "img/bg-piscine.png";
+		this.ctx.src = this.bgPath;
 		//chargement de spritesheet
 		this.img = new Image();
 		//récupérer skinPath dans le localStorage
@@ -24,8 +28,16 @@ class GameView {
 	//Dessine le fond
 	drawBackground() {
 		//x, y, width, height
-		this.ctx.fillStyle = "pink";
-		this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
+		// this.ctx.fillStyle = "pink";
+		this.ctx.drawImage(
+			this.bgPath,
+			0,
+			0,
+			this.canvas.width,
+			this.canvas.height
+		);
+
+		// this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
 		
 	}
 	drawPlayer(player) {
@@ -69,7 +81,11 @@ class GameView {
 		else {
 			const sx = player.walkSpriteIndex * sWidth;
 			const sy = player.walkRowIndex * sHeight;
-
+			
+			if (player.isDying) {
+				sx = player.deathSpriteIndex * sWidth;
+				sy = player.deathRowIndex * sHeight;
+			}
 			this.ctx.drawImage(
 				player.img,
 				sx, sy, sWidth, sHeight, // source
@@ -81,7 +97,7 @@ class GameView {
 
 
 	//Nettoie le canvas + Dessine le fond
-	render(){
+	render(alpha){
 		this.clear();
 		this.drawBackground();
 		//boucle pour parcourir tout les joueurs et les afficher
@@ -93,6 +109,7 @@ class GameView {
 			}
 			//les animations des joueurs
 			player.animate();
+			player.interpolate(alpha);
 			this.drawPlayer(player);
 		}
 	}

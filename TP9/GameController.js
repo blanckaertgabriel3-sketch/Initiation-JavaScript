@@ -4,7 +4,7 @@ class GameController {
         this.pseudo = localStorage.getItem("pseudo");
         this.serverUrl = "ws://localhost:8000/ws";
         // this.serverUrl = "ws://10.43.31.53:8000/ws";
-        //-------------------- this.serverUrl = localStorage.getItem("serverUrl");
+        // this.serverUrl = localStorage.getItem("serverUrl");
         this.skinPath = localStorage.getItem("skinPath");
         console.log("skinPath", this.skinPath);
         console.log("pseudo", this.pseudo);
@@ -33,6 +33,7 @@ class GameController {
             right: false,
             attack: false
         };
+
         // All the keys are at false (unpressed) by default
         
         // Connect to the server
@@ -47,6 +48,8 @@ class GameController {
         
         // Regulates framerate to keep 60fps
         requestAnimationFrame(this.loop);
+        
+
     }
     
     // === WebSocket initialization ===
@@ -126,8 +129,12 @@ class GameController {
     
     // === Main render loop ===
     loop(timestamp) {
+        const alpha = Math.min((timestamp - this.lastServerUpdate) / this.SERVER_INTERVAL, 1);
         //appel de la fonction render qui Nettoie le canvas + Dessine le fond
-        this.view.render();
+        this.view.render(alpha);
+        // for(const id in this.game.players) {
+        //     this.game.players[id].interpolate(alpha);
+        // }
         // Request the next frame
         requestAnimationFrame(this.loop);
     }

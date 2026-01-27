@@ -142,7 +142,7 @@ class Player {
         this.walkSpriteIndex = 0;
         this.walkSpritesNumber = 9;
         this.currentWalkSpriteStep = 0;
-        this.walkSpriteDuration = 3;
+        this.walkSpriteDuration = 3.5;
         
         this.attackSpriteIndex = 0;
         this.attackSpritesNumber = 6;
@@ -153,14 +153,27 @@ class Player {
         this.deathSpritesNumber = 6;
         this.currentDeathSpriteStep = 0;
         this.deathSpriteDuration = 5;
+        this.deathRowIndex = 20;
 
         this.walkRowIndex = 40; // default = south
+
+        this.newX = position[0];
+        this.newY = position[1];
+
+        this.prevX = position[0];
+        this.prevY = position[1];
+
+        this.renderX = position[0];
+        this.renderY = position[1];
     }
     
     update(updateData) {
-        
-        // Update authoritative position
-        [this.renderX, this.renderY] = updateData.position;
+
+        this.prevX = this.newX;
+        this.prevY = this.newY;
+
+        this.newX = updateData.position[0];
+        this.newY = updateData.position[1];
         
         // Update stats
         this.name = updateData.name
@@ -176,6 +189,8 @@ class Player {
         this.isWalking = updateData.isWalking;
         this.isDying = updateData.isDying;
         this.skinPath = updateData.skinPath;
+
+        
     }
     
     animate() {
@@ -297,5 +312,14 @@ class Player {
             // We just select the first sprite of its walking animation
             this.walkSpriteIndex = 0;
         }
+    }
+    interpolate(alpha){
+        console.log("interpolate");
+
+        this.renderX = this.prevX + (this.newX - this.prevX) * alpha;
+        this.renderY = this.prevY + (this.newY - this.prevY) * alpha;
+        console.log("renderX = this.newX - this.prevX * alpha",this.newX, this.prevX, alpha);
+        console.log("renderY = this.newY - this.prevY * alpha",this.newY, this.prevY, alpha);
+        console.log("renderX --- renderY",this.renderX, this.renderY);
     }
 }
