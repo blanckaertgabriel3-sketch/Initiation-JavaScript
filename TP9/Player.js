@@ -152,7 +152,7 @@ class Player {
         this.deathSpriteIndex = 0;
         this.deathSpritesNumber = 6;
         this.currentDeathSpriteStep = 0;
-        this.deathSpriteDuration = 5;
+        this.deathSpriteDuration = 10;
         this.deathRowIndex = 20;
 
         this.walkRowIndex = 40; // default = south
@@ -314,12 +314,7 @@ class Player {
         }
     }
     interpolate(alpha){
-        console.log("interpolate");
-
         this.renderX = this.prevX + (this.newX - this.prevX) * alpha;
         this.renderY = this.prevY + (this.newY - this.prevY) * alpha;
-        console.log("renderX = this.newX - this.prevX * alpha",this.newX, this.prevX, alpha);
-        console.log("renderY = this.newY - this.prevY * alpha",this.newY, this.prevY, alpha);
-        console.log("renderX --- renderY",this.renderX, this.renderY);
     }
 }

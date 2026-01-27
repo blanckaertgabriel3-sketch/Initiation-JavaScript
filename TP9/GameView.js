@@ -46,7 +46,6 @@ class GameView {
 			player.img = new Image();
 			player.img.src = player.skinPath;
 		}
-//ws://10.43.31.53:8000/ws
 		// Dimensions des sprites
 		const sWidth = 64;
 		const sHeight = 64;
@@ -79,8 +78,8 @@ class GameView {
 		} 
 		// --- WALK / IDLE ---
 		else {
-			const sx = player.walkSpriteIndex * sWidth;
-			const sy = player.walkRowIndex * sHeight;
+			let sx = player.walkSpriteIndex * sWidth;
+			let sy = player.walkRowIndex * sHeight;
 			
 			if (player.isDying) {
 				sx = player.deathSpriteIndex * sWidth;
@@ -92,14 +91,64 @@ class GameView {
 				dx, dy, dWidth, dHeight // destination
 			);
 		}
+		
+		let percentage = player.hp / player.maxHp
+		let hpSize = 64*percentage;
+		if(!player.isDying && !player.isDead) {
+			//afficher le name
+			this.ctx.fillStyle = "black";
+			this.ctx.font = "12px Arial";
+			this.ctx.textAlign = "center";
+			this.ctx.fillText(player.name,dx + 32,dy + 78);
+			//afficher le level
+			this.ctx.fillStyle = "black";
+			this.ctx.font = "12px Arial";
+			this.ctx.textAlign = "center";
+			this.ctx.fillText("Lv " + player.lvl,dx + 32,dy - 12);
+			//barre de vie
+			this.ctx.fillStyle = "red";
+			this.ctx.fillRect(dx, dy-7, 64, 5);
+			this.ctx.fillStyle = "green";
+			this.ctx.fillRect(dx, dy-7, hpSize, 5);
+			//barre de cooldown
+			this.ctx.fillStyle = "blue"; 
+			this.ctx.fillRect(dx, dy, 64*player.currentAttackCooldown, 5);
+		}
+		
 	}
-
-
-
+	drawTimerNbPlayer() {
+		//afficher le timer
+		this.ctx.fillStyle = "black";
+		this.ctx.font = "32px Mali";
+		this.ctx.textAlign = "center";
+		this.ctx.fillText(this.game.timer.toFixed(2), 140, 25);
+		//afficher le nombre de joueurs
+		this.ctx.fillStyle = "black";
+		this.ctx.font = "32px Mali";
+		this.ctx.textAlign = "center";
+		this.ctx.fillText(this.alivePlayer + "/" + this.totalPlayers, 700, 25);
+		
+	}
+	winner() {
+		if(this.alivePlayer <= 1) {
+			//afficher le winner
+			this.ctx.fillStyle = "black";
+			this.ctx.font = "90px Mali";
+			this.ctx.textAlign = "center";
+			this.ctx.fillText("Winner", 400, 250);
+		}
+	}
+	
+	
+	
 	//Nettoie le canvas + Dessine le fond
 	render(alpha){
 		this.clear();
 		this.drawBackground();
+		//compter le nomber de joueurs
+		this.totalPlayers = Object.keys(this.game.players).length;
+		//compter les joueurs vivants
+		this.alivePlayer = 0;
 		//boucle pour parcourir tout les joueurs et les afficher
 		for(const id in this.game.players) {
 			const player = this.game.players[id];
@@ -107,10 +156,15 @@ class GameView {
 			if (!player || player.renderX === undefined || player.renderY === undefined) {
 				continue;
 			}
+			if(!player.isDying && !player.isDead) {
+				this.alivePlayer ++;
+			}
 			//les animations des joueurs
 			player.animate();
 			player.interpolate(alpha);
 			this.drawPlayer(player);
 		}
+		this.drawTimerNbPlayer();
+		this.winner();
 	}
 }

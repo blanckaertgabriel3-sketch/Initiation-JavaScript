@@ -3,7 +3,7 @@ class GameController {
         // Retrieve player name, server address and chosen skin from localStorage (turned in at portal)
         this.pseudo = localStorage.getItem("pseudo");
         this.serverUrl = "ws://localhost:8000/ws";
-        // this.serverUrl = "ws://10.43.31.53:8000/ws";
+        // this.serverUrl = "ws://10.45.31.53:8000/ws";
         // this.serverUrl = localStorage.getItem("serverUrl");
         this.skinPath = localStorage.getItem("skinPath");
         console.log("skinPath", this.skinPath);
@@ -49,7 +49,7 @@ class GameController {
         // Regulates framerate to keep 60fps
         requestAnimationFrame(this.loop);
         
-
+        
     }
     
     // === WebSocket initialization ===
