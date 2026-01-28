@@ -15,7 +15,8 @@ export default class GameController {
         // Create a new WebSocket connection to the backend server
         // console.log(`ws://${this.serverUrl}/ws`);
         console.log(this.serverUrl);
-        this.socket = new WebSocket(this.serverUrl);
+        // this.socket = new WebSocket(this.serverUrl);
+        this.socket = new WebSocket(this.serverUrl.replace("http", "ws") + "/ws");
 
         // Timestamp of the last server update received
         this.lastServerUpdate = performance.now();

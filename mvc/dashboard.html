@@ -1,13 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+	<head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>dashboard</title>
 	<link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
-	<h1>...</h1>
+	<h2>Dashboard JS Arena</h2>
+	<form action="portail.html">
+		<button>portail</button>
+	</form>
+	<form action="game.html">
+		<button>game</button>
+	</form>
+
+	<label for="playerSelect">Sélectionner un joueur :</label>
+	<select id="playerSelect">
+		<option>Choisir un joueur</option>
+	</select>
+
+	<h3>Stats du joueur</h3>
+	<ul>
+		<li>Nom : <span id="statName">-</span></li>
+		<li>Niveau : <span id="statLvl">-</span></li>
+		<li>HP : <span id="statHp">-</span> / <span id="statMaxHp">-</span></li>
+		<li>Kills : <span id="statKills">-</span></li>
+		<li>Deaths : <span id="statDeaths">-</span></li>
+		<li>K/D : <span id="statKD">-</span></li>
+		<li>Rank : <span id="statRank">-</span></li>
+		<li>Classement moyen : <span id="statAvgRank">-</span></li>
+	</ul>
+
+	<h3>Classement général</h3>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Position</th>
+				<th>Joueur</th>
+				<th>Kills</th>
+				<th>Deaths</th>
+				<th>K/D</th>
+			</tr>
+		</thead>
+		<tbody id="rankingBody"></tbody>
+	</table>
+
+
 </body>
 <script src="dashboard.js"></script>
 </html>

@@ -8,6 +8,8 @@ const frameWidth = 64;   // largeur d'un perso dans la spritesheet
 const frameHeight = 64;  // hauteur d'un perso
 const canvasSize = 64;   // taille d'affichage sur le portail
 
+console.log("http://127.0.0.1:8000");
+
 const container = document.getElementById("skins-container");
 
 skins.forEach((path, index) => {
@@ -73,6 +75,7 @@ form.addEventListener("submit", (e) => {
     localStorage.setItem("pseudo", pseudo);
     localStorage.setItem("serverUrl", serverUrl);
     localStorage.setItem("skinPath", skinPath);
+
     
     window.location.href = "dashboard.html";
   }
