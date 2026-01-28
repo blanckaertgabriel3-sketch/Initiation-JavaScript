@@ -8,7 +8,6 @@ const frameWidth = 64;   // largeur d'un perso dans la spritesheet
 const frameHeight = 64;  // hauteur d'un perso
 const canvasSize = 64;   // taille d'affichage sur le portail
 
-console.log("http://127.0.0.1:8000");
 
 const container = document.getElementById("skins-container");
 
@@ -68,10 +67,10 @@ form.addEventListener("submit", (e) => {
   const serverUrl = form.querySelector('input[type="text"]').value;
   const skinPath = document.querySelector('input[name="skinPath"]:checked')?.value;
 
-  if (pseudo === "" || serverUrl === "") {
-    alert("Error: pseudo or server URL missing")
+  if (pseudo === "") {
+    alert("Error: pseudo missing")
   }
-  if (pseudo !== "" && serverUrl !== "") {
+  if (pseudo !== "") {
     localStorage.setItem("pseudo", pseudo);
     localStorage.setItem("serverUrl", serverUrl);
     localStorage.setItem("skinPath", skinPath);
