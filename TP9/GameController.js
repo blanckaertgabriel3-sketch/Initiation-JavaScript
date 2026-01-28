@@ -6,7 +6,7 @@ class GameController {
         // this.serverUrl = "ws://10.45.31.53:8000/ws";
         // this.serverUrl = localStorage.getItem("serverUrl");
         this.skinPath = localStorage.getItem("skinPath");
-        console.log("skinPath", this.skinPath);
+        // console.log("skinPath", this.skinPath);
         console.log("pseudo", this.pseudo);
         
         // Create the Game instance that will store the game state (players, timer, flags)
