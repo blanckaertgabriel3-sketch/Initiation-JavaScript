@@ -73,8 +73,8 @@ form.addEventListener("submit", (e) => {
     localStorage.setItem("pseudo", pseudo);
     localStorage.setItem("serverUrl", serverUrl);
     localStorage.setItem("skinPath", skinPath);
-  
-    window.location.href = "game.html";
+    
+    window.location.href = "dashboard.html";
   }
 
 });
