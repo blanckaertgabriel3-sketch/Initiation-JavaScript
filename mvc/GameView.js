@@ -128,18 +128,7 @@ export default class GameView {
 		this.ctx.textAlign = "center";
 		this.ctx.fillText(this.alivePlayer + "/" + this.totalPlayers, 700, 25);
 		
-	}
-	winner() {
-		if(this.alivePlayer <= 1) {
-			//afficher le winner
-			this.ctx.fillStyle = "black";
-			this.ctx.font = "90px Mali";
-			this.ctx.textAlign = "center";
-			this.ctx.fillText("Winner", 400, 250);
-		}
-	}
-	
-	
+	}	
 	
 	//Nettoie le canvas + Dessine le fond
 	render(alpha){
@@ -165,6 +154,5 @@ export default class GameView {
 			this.drawPlayer(player);
 		}
 		this.drawTimerNbPlayer();
-		this.winner();
 	}
 }

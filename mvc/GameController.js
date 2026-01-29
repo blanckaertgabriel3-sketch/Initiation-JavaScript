@@ -4,19 +4,22 @@ export default class GameController {
         this.pseudo = localStorage.getItem("pseudo");
         // this.serverUrl = "ws://localhost:8000/ws";
         // this.serverUrl = "ws://10.45.31.53:8000/ws";
-        this.serverUrl = localStorage.getItem("serverUrl");
+        this.serverUrl = localStorage.getItem("serverUrl") || "ws://localhost:8000/ws"; 
+        // this.serverUrl = localStorage.getItem("serverUrl") || "ws://10.45.31.53:8000/ws"; 
+        // this.serverUrl = localStorage.getItem("serverUrl") || "ws://13.38.137.68:8000/ws"; 
         this.skinPath = localStorage.getItem("skinPath");
         // console.log("skinPath", this.skinPath);
         console.log("pseudo", this.pseudo);
+        console.log("skinPath", this.skinPath);
+        console.log("serverUrl", this.serverUrl);
         // Create the Game instance that will store the game state (players, timer, flags)
         this.game = game;
         //création de l'instance GameView   
         this.view = gameView;
         // Create a new WebSocket connection to the backend server
         // console.log(`ws://${this.serverUrl}/ws`);
-        console.log(this.serverUrl);
-        // this.socket = new WebSocket(this.serverUrl);
-        this.socket = new WebSocket(this.serverUrl.replace("http", "ws") + "/ws");
+        this.socket = new WebSocket(this.serverUrl);
+        // -------------this.socket = new WebSocket(this.serverUrl.replace("http", "ws") + "/ws");
 
         // Timestamp of the last server update received
         this.lastServerUpdate = performance.now();
@@ -84,6 +87,7 @@ export default class GameController {
             console.log("Disconnected from server");
         };
     }
+    
     
     // === Keyboard inputs handler ===
     initInput() {

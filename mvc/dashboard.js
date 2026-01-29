@@ -6,6 +6,7 @@ const pseudo = localStorage.getItem("pseudo");
 console.log("serverUrl:", serverUrl);
 console.log("pseudo:", pseudo);
 
+
 //Récupération asynchrone des données
 
 //récupérer la liste des joueurs
