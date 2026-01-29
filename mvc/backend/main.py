@@ -37,26 +37,3 @@ async def websocket_endpoint(ws: WebSocket):
     except WebSocketDisconnect:
         game.remove_player(player_id)
 
-# ROUTE TEST LIST PLAYERS
-@app.get("/api/listPlayers")
-def list_players():
-    return [p.name for p in game.players.values()]
-
-# ROUTE TEST STATS
-@app.get("/api/stats")
-def player_stats(name: str):
-    player = next((p for p in game.players.values() if p.name == name), None)
-    if not player:
-        return {"error": "Player not found"}
-    return {
-        "name": player.name,
-        "lvl": player.lvl,
-        "hp": player.hp,
-        "maxHp": player.maxHp,
-        "speed": player.speed,
-        "kills": getattr(player, "kills", 0),
-        "deaths": getattr(player, "deaths", 0),
-        "kd": getattr(player, "kd", 0),
-        "rank": getattr(player, "rank", 0),
-        "avg_rank": getattr(player, "avg_rank", 0)
-    }

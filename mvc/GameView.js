@@ -4,8 +4,8 @@ export default class GameView {
 		//récupération de l'élément canvas
 		this.canvas = document.getElementById("canvas");
 		//récupération des dimentions canvas
-		this.canvas.height = 500;
-		this.canvas.width = 800;
+		this.canvas.height = 800;
+		this.canvas.width = 1000;
 		//mettre bordure pour la visibilité du canvas
 		this.canvas.style.border = "2px solid black";
 		//récupération du context canvas
