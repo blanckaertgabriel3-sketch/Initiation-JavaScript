@@ -6,7 +6,7 @@ export default class GameController {
         // this.serverUrl = "ws://10.45.31.53:8000/ws";
         // this.serverUrl = localStorage.getItem("serverUrl") || "ws://localhost:8000/ws"; 
         // this.serverUrl = localStorage.getItem("serverUrl") || "ws://10.45.31.53:8000/ws"; 
-        this.serverUrl = localStorage.getItem("serverUrl") || "ws://13.38.137.68:8000/ws"; 
+        this.serverUrl = localStorage.getItem("serverUrl") || "ws://13.38.137.68:8000/ws";
         this.skinPath = localStorage.getItem("skinPath");
         // console.log("skinPath", this.skinPath);
         console.log("pseudo", this.pseudo);
